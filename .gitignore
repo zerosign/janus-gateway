@@ -87,3 +87,13 @@ Makefile.in
 .vscode
 
 .cache
+
+subprojects/janson-*
+subprojects/libnice-*
+subprojects/libogg-*
+subprojects/libsrtp-*
+subprojects/zlib-*
+subprojects/jansson-*
+subprojects/glib-*
+subprojects/opus
+subprojects/packagecache
