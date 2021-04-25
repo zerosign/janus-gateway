@@ -111,17 +111,38 @@ usrsctp_dep = declare_dependency(
 
 conf.set('HAVE_SRTP_2', 1)
 
+# zlib_sp = subproject('zlib')
+
+glib_sp = subproject('glib')
+glib_dep = glib_sp.get_variable('libglib_dep')
+gio_dep = glib_sp.get_variable('libgio_dep')
+zlib_dep = glib_sp.get_variable('libz_dep')
+
+libnice_sp = subproject('libnice')
+libnice_dep = libnice_sp.get_variable('libnice_dep')
+
+jansson_sp = subproject('jansson')
+jansson_dep = jansson_sp.get_variable('jansson_dep')
+
+libsrtp2_sp = subproject('libsrtp2')
+libsrtp2_dep = libsrtp2_sp.get_variable('libsrtp2_dep')
+
+libconfig_sp = subproject('libconfig')
+libconfig_dep = libconfig_sp.get_variable('libconfig')
+
 janus_dependencies = [
-	dependency('zlib'),
-	dependency('glib-2.0'),
-	dependency('nice'),
-	dependency('libsrtp2'),
-	dependency('libconfig'),
+	zlib_dep,
+	glib_dep,
+	gio_dep,
+	# libnice_dep,
+	libnice_dep,
+	libsrtp2_dep,
+	libconfig_dep,
 	dependency('libcrypto'),
 	dependency('libssl'),
 	dependency('libcurl'),
 	usrsctp_dep,
-	dependency('jansson'),
+	jansson_dep,
 ]
 
 link_args = [
@@ -162,7 +183,6 @@ janus_binary = executable(
 	link_args: link_args,
 	export_dynamic: true,
 )
-
 
 janus_videoroom_plugin_sources = [
 	janus_plugin_sources,
@@ -205,9 +225,15 @@ janus_audiobridge_plugin_build_args = [
 	'-DHAVE_LIBOGG',
 ]
 
+opus_sp = subproject('opus')
+opus_dep = opus_sp.get_variable('opus_dep')
+
+libogg_sp = subproject('ogg')
+libogg_dep = libogg_sp.get_variable('libogg_dep')
+
 janus_audiobridge_plugin_deps = [
-	dependency('opus'),
-	dependency('ogg'),
+	opus_dep,
+	libogg_dep,
 ]
 
 janus_audiobridge_plugin = shared_module(
@@ -230,8 +256,11 @@ janus_http_transport_build_args = [
 	'-DHAVE_ENUM_MHD_RESULT'
 ]
 
+libmicrohttpd_sp = subproject('libmicrohttpd')
+libmicrohttpd_dep = microhttpd_sp.get_variable('libmicrohttpd_dep')
+
 janus_http_transport_deps = [
-	dependency('libmicrohttpd')
+	libmicrohttpd_dep,
 ]
 
 janus_http_transport = shared_module(
@@ -254,8 +283,12 @@ janus_websockets_transport_build_args = [
 	'-DHAVE_ENUM_MHD_RESULT'
 ]
 
+
+libwebsockets_sp = subproject('libwebsockets')
+libwebsockets_dep = libwebsockets_sp.get_variable('libwebsockets_dep')
+
 janus_websockets_transport_deps = [
-	dependency('libwebsockets')
+	libwebsockets_dep
 ]
 
 janus_websockets_transport = shared_module(
