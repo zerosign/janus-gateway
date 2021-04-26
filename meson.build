@@ -128,7 +128,7 @@ libsrtp2_sp = subproject('libsrtp2')
 libsrtp2_dep = libsrtp2_sp.get_variable('libsrtp2_dep')
 
 libconfig_sp = subproject('libconfig')
-libconfig_dep = libconfig_sp.get_variable('libconfig')
+libconfig_dep = libconfig_sp.get_variable('libconfig_dep')
 
 janus_dependencies = [
 	zlib_dep,
