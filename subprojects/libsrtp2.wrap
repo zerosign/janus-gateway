@@ -1,6 +1,6 @@
-[wrap-file]
-directory = libsrtp-2.3.0
+[wrap-git]
+url = https://github.com/cisco/libsrtp
+revision = head
 
-source_url = https://github.com/cisco/libsrtp/archive/v2.3.0.tar.gz
-source_filename = libsrtp2-2.3.0.tar.gz
-source_hash = 94093a5d04c5f4743e8d81182b76938374df6d393b45322f24960d250b0110e8
+[provide]
+libsrtp2 = libsrtp2_dep

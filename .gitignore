@@ -97,3 +97,5 @@ subprojects/jansson-*
 subprojects/glib-*
 subprojects/opus
 subprojects/packagecache
+subprojects/libconfig
+subprojects/libmicrohttpd

@@ -1,0 +1,6 @@
+[wrap-git]
+url = file:///home/zerosign/Repositories/cpp/libconfig
+revision = head
+
+[provide]
+libconfig = libconfig_dep
