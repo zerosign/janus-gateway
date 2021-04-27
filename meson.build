@@ -256,11 +256,12 @@ janus_http_transport_build_args = [
 	'-DHAVE_ENUM_MHD_RESULT'
 ]
 
-libmicrohttpd_sp = subproject('libmicrohttpd')
-libmicrohttpd_dep = microhttpd_sp.get_variable('libmicrohttpd_dep')
+# libmicrohttpd_sp = subproject('libmicrohttpd')
+# libmicrohttpd_dep = microhttpd_sp.get_variable('libmicrohttpd_dep')
 
 janus_http_transport_deps = [
-	libmicrohttpd_dep,
+	# libmicrohttpd_dep,
+	dependency('libmicrohttpd'),
 ]
 
 janus_http_transport = shared_module(
