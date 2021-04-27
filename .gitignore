@@ -99,3 +99,4 @@ subprojects/opus
 subprojects/packagecache
 subprojects/libconfig
 subprojects/libmicrohttpd
+subprojects/libwebsockets
