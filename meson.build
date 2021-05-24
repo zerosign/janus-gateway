@@ -138,8 +138,8 @@ janus_dependencies = [
 	libnice_dep,
 	libsrtp2_dep,
 	libconfig_dep,
-	dependency('libcrypto'),
-	dependency('libssl'),
+	# dependency('libcrypto'),
+	# dependency('libssl'),
 	dependency('libcurl'),
 	usrsctp_dep,
 	jansson_dep,
@@ -285,11 +285,12 @@ janus_websockets_transport_build_args = [
 ]
 
 
-libwebsockets_sp = subproject('libwebsockets')
-libwebsockets_dep = libwebsockets_sp.get_variable('libwebsockets_dep')
+# libwebsockets_sp = subproject('libwebsockets')
+# libwebsockets_dep = libwebsockets_sp.get_variable('libwebsockets_dep')
 
 janus_websockets_transport_deps = [
-	libwebsockets_dep
+	# libwebsockets_dep
+	dependency('libwebsockets'),
 ]
 
 janus_websockets_transport = shared_module(
