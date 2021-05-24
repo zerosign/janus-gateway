@@ -11,6 +11,12 @@ For some online demos and documentations, make sure you pay the [project website
 
 If you have questions on Janus, or wish to discuss Janus with us and other users, please join our [meetecho-janus](https://groups.google.com/forum/#!forum/meetecho-janus) Google Group. If you encounter bugs, please submit an issue on [GitHub](https://github.com/meetecho/janus-gateway/issues): make sure you read the [guidelines](.github/ISSUE_TEMPLATE.md) before opening an issue, though.
 
+**WARNING** This is modified version that use meson for building janus. This repo also assume that you're using Archlinux to host & builds janus-gateway, so ignore below package dependency requirement and suchs. This repo also focus on building :
+
+- WebSocket supports
+- VideoRoom & AudioBridge supports
+- Tight integration with Prometheus c library (using [prometheus-client-c](https://github.com/digitalocean/prometheus-client-c))
+- No lua scripting supports
 
 ## Dependencies
 To install it, you'll need to satisfy the following dependencies:
