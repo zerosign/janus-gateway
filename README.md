@@ -18,6 +18,8 @@ If you have questions on Janus, or wish to discuss Janus with us and other users
 - Tight integration with Prometheus c library (using [prometheus-client-c](https://github.com/digitalocean/prometheus-client-c))
 - No lua scripting supports
 
+**WARNING** This builds might never being mainlined, however I'll try to rebase it quite often with current master.
+
 ## Dependencies
 To install it, you'll need to satisfy the following dependencies:
 
