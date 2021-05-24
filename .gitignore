@@ -100,3 +100,4 @@ subprojects/packagecache
 subprojects/libconfig
 subprojects/libmicrohttpd
 subprojects/libwebsockets
+subprojects/libffi
