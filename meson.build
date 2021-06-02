@@ -150,6 +150,7 @@ janus_dependencies = [
 
 link_args = [
 	'-lm',
+	'-ldl',
 ]
 
 janus_config_install_dir = get_option('datadir') / 'janus'
