@@ -1,8 +1,0 @@
-[wrap-file]
-directory = libnice-0.1.18
-source_url = https://github.com/libnice/libnice/archive/refs/tags/0.1.18.tar.gz
-source_filename = libnice-0.1.18.tar.gz
-source_hash = 8bacba53e59ec6d72e9a398835c4df6446d5e0d71b2dabb7a19f6d6c5a72dcbe
-
-[provide]
-libnice = libnice_dep
