@@ -102,12 +102,6 @@ janus_sources = [
 	'loggers/logger.h'
 ]
 
-usrsctp_dep = declare_dependency(
-	link_args: ['/usr/lib/libusrsctp.so'],
-	sources: [
-		'/usr/include/usrsctp.h'
-	]
-)
 
 conf.set('HAVE_SRTP_2', 1)
 
@@ -128,6 +122,8 @@ zlib_dep = dependency('zlib')
 # jansson_sp = subproject('jansson')
 # jansson_dep = jansson_sp.get_variable('jansson_dep')
 
+libusrsctp_dep = dependency('usrsctp')
+
 # libsrtp2_sp = subproject('libsrtp2')
 # libsrtp2_dep = libsrtp2_sp.get_variable('libsrtp2_dep')
 
@@ -144,6 +140,7 @@ janus_dependencies = [
 	glib_dep,
 	gio_dep,
 	openssl_dep,
+	libusrsctp_dep,
 	dependency('libsrtp2'),
 	dependency('nice'),
 	dependency('jansson'),
