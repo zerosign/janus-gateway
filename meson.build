@@ -113,10 +113,14 @@ conf.set('HAVE_SRTP_2', 1)
 
 # zlib_sp = subproject('zlib')
 
-glib_sp = subproject('glib')
-glib_dep = glib_sp.get_variable('libglib_dep')
-gio_dep = glib_sp.get_variable('libgio_dep')
-zlib_dep = glib_sp.get_variable('libz_dep')
+# glib_sp = subproject('glib')
+# glib_dep = glib_sp.get_variable('libglib_dep')
+# gio_dep = glib_sp.get_variable('libgio_dep')
+# zlib_dep = glib_sp.get_variable('libz_dep')
+
+glib_dep = dependency('glib-2.0')
+gio_dep = dependency('gio-2.0')
+zlib_dep = dependency('zlib')
 
 # libnice_sp = subproject('libnice')
 # libnice_dep = libnice_sp.get_variable('libnice_dep')
