@@ -1,6 +1,0 @@
-[wrap-git]
-url = https://github.com/xiph/opus
-revision = head
-
-[provide]
-opus = opus_dep
