@@ -141,7 +141,7 @@ janus_dependencies = [
 	gio_dep,
 	openssl_dep,
 	dependency('libsrtp2'),
-	dependency('libnice'),
+	dependency('nice'),
 	dependency('jansson'),
 	dependency('libconfig'),
 	dependency('libcurl'),
