@@ -1,6 +1,0 @@
-[wrap-git]
-url = file:///home/zerosign/Repositories/cpp/libconfig
-revision = head
-
-[provide]
-libmicrohttpd = libmicrohttpd_dep

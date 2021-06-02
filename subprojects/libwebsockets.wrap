@@ -1,6 +1,0 @@
-[wrap-git]
-url = file:///home/zerosign/Repositories/cpp/libwebsockets
-revision = head
-
-[provide]
-libwebsockets = libwebsockets_dep
