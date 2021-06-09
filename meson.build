@@ -224,6 +224,36 @@ janus_textroom_plugin = shared_module(
 	link_args: shared_link_args,
 )
 
+janus_streaming_plugin_sources = [
+	janus_plugin_sources,
+	'plugins/janus_streaming.c',
+]
+
+janus_streaming_plugin_build_args = [
+	'-DHAVE_LIBOGG=1',
+]
+
+
+# libogg_sp = subproject('ogg')
+libogg_dep = dependency('ogg')
+# libogg_sp.get_variable('libogg_dep')
+
+janus_streaming_plugin_deps = [
+	libogg_dep,
+]
+
+
+janus_streaming_plugin = shared_module(
+	'janus_streaming',
+	janus_streaming_plugin_sources,
+	dependencies: [janus_dependencies, janus_streaming_plugin_deps],
+	pic: true,
+	install: true,
+	install_dir: janus_plugin_install_dir,
+	c_args: [janus_streaming_plugin_build_args, shared_build_args],
+	link_args: shared_link_args,
+)
+
 janus_audiobridge_plugin_sources = [
 	janus_plugin_sources,
 	'plugins/janus_audiobridge.c',
