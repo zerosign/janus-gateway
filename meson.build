@@ -160,9 +160,14 @@ janus_event_install_dir = get_option('libdir') / 'janus' / 'event'
 janus_logger_install_dir = get_option('libdir') / 'janus' / 'logger'
 
 build_args = [
-	'-DHAVE_LIBCURL',
-	'-DHAVE_SCTP',
-	'-DHAVE_SRTP_2',
+	'-DHAVE_LIBCURL=1',
+	'-DHAVE_BORINGSSL=1',
+	'-DHAVE_ICE_NOMINATION=1',
+	'-DHAVE_ENUM_MHD_RESULT=1',
+	'-DHAVE_SRTP_AESGCM=1',
+	'-DHAVE_SCTP=1',
+	'-DHAVE_SRTP_2=1',
+	'-DHAVE_PORTRANGE=1',
 	'-DCONFDIR="@0@"'.format(janus_config_install_dir, 0),
 	'-DPLUGINDIR="@0@"'.format(janus_plugin_install_dir, 0),
 	'-DTRANSPORTDIR="@0@"'.format(janus_transport_install_dir, 0),
@@ -226,7 +231,7 @@ janus_audiobridge_plugin_sources = [
 ]
 
 janus_audiobridge_plugin_build_args = [
-	'-DHAVE_LIBOGG',
+	'-DHAVE_LIBOGG=1',
 ]
 
 opus_dep = dependency('opus')
@@ -257,7 +262,7 @@ janus_http_transport_sources = [
 ]
 
 janus_http_transport_build_args = [
-	'-DHAVE_ENUM_MHD_RESULT'
+	'-DHAVE_ENUM_MHD_RESULT=1'
 ]
 
 # libmicrohttpd_sp = subproject('libmicrohttpd')
@@ -285,7 +290,7 @@ janus_websockets_transport_sources = [
 ]
 
 janus_websockets_transport_build_args = [
-	'-DHAVE_ENUM_MHD_RESULT'
+	'-DHAVE_ENUM_MHD_RESULT=1'
 ]
 
 
