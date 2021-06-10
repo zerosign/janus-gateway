@@ -135,17 +135,17 @@ int janus_sdp_process(void *ice_handle, janus_sdp *remote_sdp, gboolean rids_hml
 		if(a && a->name && a->value) {
 			if(!strcasecmp(a->name, "fingerprint")) {
 				JANUS_LOG(LOG_VERB, "[%"SCNu64"] Fingerprint (global) : %s\n", handle->handle_id, a->value);
-				if(strcasestr(a->value, "sha-256 ") == a->value) {
+
+				if(strlen(a->value) >= 7 && strncasecmp(a->value, "sha-256", 7) == 0) {
 					rhashing = g_strdup("sha-256");
 					rfingerprint = g_strdup(a->value + strlen("sha-256 "));
-				} else if(strcasestr(a->value, "sha-1 ") == a->value) {
-					JANUS_LOG(LOG_WARN, "[%"SCNu64"]  Hashing algorithm not the one we expected (sha-1 instead of sha-256), but that's ok\n", handle->handle_id);
+				} else if(strlen(a->value) >= 5 && strncasecmp(a->value, "sha-1", 5) == 0) {
 					rhashing = g_strdup("sha-1");
 					rfingerprint = g_strdup(a->value + strlen("sha-1 "));
 				} else {
-					/* FIXME We should handle this somehow anyway... OpenSSL supports them all */
 					JANUS_LOG(LOG_WARN, "[%"SCNu64"]  Hashing algorithm not the one we expected (sha-256/sha-1), *NOT* cool\n", handle->handle_id);
 				}
+
 			} else if(!strcasecmp(a->name, "ice-ufrag")) {
 				JANUS_LOG(LOG_VERB, "[%"SCNu64"] ICE ufrag (global):   %s\n", handle->handle_id, a->value);
 				ruser = g_strdup(a->value);
@@ -340,12 +340,13 @@ int janus_sdp_process(void *ice_handle, janus_sdp *remote_sdp, gboolean rids_hml
 					}
 				} else if(!strcasecmp(a->name, "fingerprint")) {
 					JANUS_LOG(LOG_VERB, "[%"SCNu64"] Fingerprint (local) : %s\n", handle->handle_id, a->value);
-					if(strcasestr(a->value, "sha-256 ") == a->value) {
+
+					if(strlen(a->value) >= 7 && strncasecmp(a->value, "sha-256", 7) == 0) {
 						g_free(rhashing);	/* FIXME We're overwriting the global one, if any */
 						rhashing = g_strdup("sha-256");
 						g_free(rfingerprint);	/* FIXME We're overwriting the global one, if any */
 						rfingerprint = g_strdup(a->value + strlen("sha-256 "));
-					} else if(strcasestr(a->value, "sha-1 ") == a->value) {
+					} else if(strlen(a->value) >= 5 && strncasecmp(a->value, "sha-1", 5) == 0) {
 						JANUS_LOG(LOG_WARN, "[%"SCNu64"]  Hashing algorithm not the one we expected (sha-1 instead of sha-256), but that's ok\n", handle->handle_id);
 						g_free(rhashing);	/* FIXME We're overwriting the global one, if any */
 						rhashing = g_strdup("sha-1");
@@ -354,6 +355,7 @@ int janus_sdp_process(void *ice_handle, janus_sdp *remote_sdp, gboolean rids_hml
 					} else {
 						/* FIXME We should handle this somehow anyway... OpenSSL supports them all */
 						JANUS_LOG(LOG_WARN, "[%"SCNu64"]  Hashing algorithm not the one we expected (sha-256), *NOT* cool\n", handle->handle_id);
+
 					}
 				} else if(!strcasecmp(a->name, "setup")) {
 					JANUS_LOG(LOG_VERB, "[%"SCNu64"] DTLS setup (local):  %s\n", handle->handle_id, a->value);
