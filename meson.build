@@ -160,7 +160,6 @@ janus_event_install_dir = get_option('libdir') / 'janus' / 'event'
 janus_logger_install_dir = get_option('libdir') / 'janus' / 'logger'
 
 build_args = [
-	'-DHAVE_LIBCURL=0',
 	'-DHAVE_BORINGSSL=1',
 	'-DHAVE_ICE_NOMINATION=1',
 	'-DHAVE_ENUM_MHD_RESULT=1',
