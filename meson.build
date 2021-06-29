@@ -103,6 +103,42 @@ janus_sources = [
 	'loggers/logger.h'
 ]
 
+janus_pp_sources = [
+	'utils.h',
+	'utils.c',
+	'config.c',
+	'config.h',
+	'debug.h',
+	'log.c',
+	'log.h',
+	'version.c',
+	'version.h',
+	'postprocessing/pp-av1.c',
+	'postprocessing/pp-av1.h',
+	'postprocessing/pp-avformat.c',
+	'postprocessing/pp-avformat.h',
+	'postprocessing/pp-binary.c',
+	'postprocessing/pp-binary.h',
+	'postprocessing/pp-g711.c',
+	'postprocessing/pp-g711.h',
+	'postprocessing/pp-g722.c',
+	'postprocessing/pp-g722.h',
+	'postprocessing/pp-h264.c',
+	'postprocessing/pp-h264.h',
+	'postprocessing/pp-h265.c',
+	'postprocessing/pp-h265.h',
+	'postprocessing/pp-opus.c',
+	'postprocessing/pp-opus.h',
+	'postprocessing/pp-opus-silence.h',
+	'postprocessing/pp-rtp.h',
+	'postprocessing/pp-srt.c',
+	'postprocessing/pp-srt.h',
+	'postprocessing/pp-webm.c',
+	'postprocessing/pp-webm.h',
+	'postprocessing/janus-pp-rec.c',
+	'postprocessing/pp-cmdline.c',
+	'postprocessing/pp-cmdline.h'
+]
 
 conf.set('HAVE_SRTP_2', 1)
 
@@ -148,6 +184,20 @@ janus_dependencies = [
 	dependency('libconfig'),
 ]
 
+
+janus_pp_dependencies = [
+	glib_dep,
+	gio_dep,
+	zlib_dep,
+	libusrsctp_dep,
+	dependency('libavutil'),
+	dependency('libavformat'),
+	dependency('jansson'),
+	dependency('libavcodec'),
+	dependency('libconfig'),
+]
+
+
 link_args = [
 	'-lm',
 	'-ldl',
@@ -190,6 +240,16 @@ janus_binary = executable(
 	c_args: build_args,
 	link_args: link_args,
 	export_dynamic: true,
+)
+
+janus_pp_binary = executable(
+	'janus-pp-rec',
+	janus_pp_sources,
+	dependencies: janus_pp_dependencies,
+	install: true,
+	c_args: build_args,
+	link_args: link_args,
+	export_dynamic: false,
 )
 
 janus_videoroom_plugin_sources = [
