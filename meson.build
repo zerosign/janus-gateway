@@ -35,7 +35,9 @@ logger_headers = [
 ]
 
 event_headers = [
-	'events/eventhandler.h'
+	'events/eventhandler.h',
+	'events.h',
+	'events.c'
 ]
 
 janus_plugin_sources = [
@@ -47,6 +49,12 @@ janus_transport_sources = [
 	headers,
 	transport_headers,
 ]
+
+janus_event_sources = [
+	headers,
+	event_headers,
+]
+
 
 janus_sources = [
 	'apierror.c',
@@ -382,12 +390,7 @@ janus_websockets_transport_build_args = [
 	'-DHAVE_ENUM_MHD_RESULT=1'
 ]
 
-
-# libwebsockets_sp = subproject('libwebsockets')
-# libwebsockets_dep = libwebsockets_sp.get_variable('libwebsockets_dep')
-
 janus_websockets_transport_deps = [
-	# libwebsockets_dep
 	dependency('libwebsockets'),
 ]
 
@@ -398,5 +401,28 @@ janus_websockets_transport = shared_module(
 	install: true,
 	install_dir: janus_transport_install_dir,
 	c_args: [janus_websockets_transport_build_args, shared_build_args],
+	link_args: shared_link_args,
+)
+
+janus_wsevh_event_deps = [
+	dependency('libwebsockets')
+]
+
+janus_wsevh_event_build_args = [
+	'-DLWS_WITHOUT_EXTENSIONS=1'
+]
+
+janus_wsevh_event_sources = [
+	janus_event_sources,
+	'events/janus_wsevh.c'
+]
+
+janus_wsevent_event = shared_module(
+	'janus_wsevh',
+	janus_wsevh_event_sources,
+	dependencies: [janus_dependencies, janus_wsevh_event_deps],
+	install: true,
+	install_dir: janus_event_install_dir,
+	c_args: [janus_wsevh_event_build_args, shared_build_args],
 	link_args: shared_link_args,
 )
