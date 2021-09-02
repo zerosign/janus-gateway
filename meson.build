@@ -1,5 +1,4 @@
-project('janus-gateway', 'c', version: '0.11.2')
-
+project('janus-gateway', 'c', version: '0.11.3')
 
 conf = configuration_data()
 
@@ -300,7 +299,6 @@ janus_streaming_plugin_sources = [
 janus_streaming_plugin_build_args = [
 	'-DHAVE_LIBOGG=1',
 ]
-
 
 # libogg_sp = subproject('ogg')
 libogg_dep = dependency('ogg')
