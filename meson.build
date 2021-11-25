@@ -264,7 +264,7 @@ janus_videoroom_plugin_sources = [
 	'plugins/janus_videoroom.c',
 ]
 
-janus_videoroom_plugin = shared_module(
+janus_videoroom_plugin = build_target(
 	'janus_videoroom',
 	janus_videoroom_plugin_sources,
 	dependencies: [janus_dependencies],
@@ -273,6 +273,7 @@ janus_videoroom_plugin = shared_module(
 	install_dir: janus_plugin_install_dir,
 	c_args: shared_build_args,
 	link_args: shared_link_args,
+	target_type: 'shared_library',
 )
 
 janus_textroom_plugin_sources = [
@@ -280,7 +281,7 @@ janus_textroom_plugin_sources = [
 	'plugins/janus_textroom.c',
 ]
 
-janus_textroom_plugin = shared_module(
+janus_textroom_plugin = build_target(
 	'janus_textroom',
 	janus_textroom_plugin_sources,
 	dependencies: [janus_dependencies],
@@ -289,6 +290,7 @@ janus_textroom_plugin = shared_module(
 	install_dir: janus_plugin_install_dir,
 	c_args: shared_build_args,
 	link_args: shared_link_args,
+	target_type: 'shared_library',
 )
 
 janus_streaming_plugin_sources = [
@@ -309,7 +311,7 @@ janus_streaming_plugin_deps = [
 ]
 
 
-janus_streaming_plugin = shared_module(
+janus_streaming_plugin = build_target(
 	'janus_streaming',
 	janus_streaming_plugin_sources,
 	dependencies: [janus_dependencies, janus_streaming_plugin_deps],
@@ -318,6 +320,7 @@ janus_streaming_plugin = shared_module(
 	install_dir: janus_plugin_install_dir,
 	c_args: [janus_streaming_plugin_build_args, shared_build_args],
 	link_args: shared_link_args,
+	target_type: 'shared_library'
 )
 
 janus_audiobridge_plugin_sources = [
@@ -340,7 +343,7 @@ janus_audiobridge_plugin_deps = [
 	libogg_dep,
 ]
 
-janus_audiobridge_plugin = shared_module(
+janus_audiobridge_plugin = build_target(
 	'janus_audiobridge',
 	janus_audiobridge_plugin_sources,
 	dependencies: [janus_dependencies, janus_audiobridge_plugin_deps],
@@ -349,6 +352,7 @@ janus_audiobridge_plugin = shared_module(
 	install_dir: janus_plugin_install_dir,
 	c_args: [janus_audiobridge_plugin_build_args, shared_build_args],
 	link_args: shared_link_args,
+	target_type: 'shared_library'
 )
 
 janus_http_transport_sources = [
@@ -368,7 +372,7 @@ janus_http_transport_deps = [
 	dependency('libmicrohttpd'),
 ]
 
-janus_http_transport = shared_module(
+janus_http_transport = build_target(
 	'janus_http',
 	janus_http_transport_sources,
 	dependencies: [janus_dependencies, janus_http_transport_deps],
@@ -377,6 +381,7 @@ janus_http_transport = shared_module(
 	install_dir: janus_transport_install_dir,
 	c_args: [janus_http_transport_build_args, shared_build_args],
 	link_args: shared_link_args,
+	target_type: 'shared_library'
 )
 
 janus_websockets_transport_sources = [
@@ -392,7 +397,7 @@ janus_websockets_transport_deps = [
 	dependency('libwebsockets'),
 ]
 
-janus_websockets_transport = shared_module(
+janus_websockets_transport = build_target(
 	'janus_websockets',
 	janus_websockets_transport_sources,
 	dependencies: [janus_dependencies, janus_websockets_transport_deps],
@@ -400,6 +405,7 @@ janus_websockets_transport = shared_module(
 	install_dir: janus_transport_install_dir,
 	c_args: [janus_websockets_transport_build_args, shared_build_args],
 	link_args: shared_link_args,
+	target_type: 'shared_library'
 )
 
 janus_wsevh_event_deps = [
@@ -415,7 +421,7 @@ janus_wsevh_event_sources = [
 	'events/janus_wsevh.c'
 ]
 
-janus_wsevent_event = shared_module(
+janus_wsevent_event = build_target(
 	'janus_wsevh',
 	janus_wsevh_event_sources,
 	dependencies: [janus_dependencies, janus_wsevh_event_deps],
@@ -423,4 +429,5 @@ janus_wsevent_event = shared_module(
 	install_dir: janus_event_install_dir,
 	c_args: [janus_wsevh_event_build_args, shared_build_args],
 	link_args: shared_link_args,
+	target_type: 'shared_library'
 )
