@@ -273,7 +273,8 @@ janus_videoroom_plugin = build_target(
 	install_dir: janus_plugin_install_dir,
 	c_args: shared_build_args,
 	link_args: shared_link_args,
-	target_type: 'shared_library',
+	target_type: 'shared_module',
+	export_dynamic: true,
 )
 
 janus_textroom_plugin_sources = [
@@ -290,7 +291,8 @@ janus_textroom_plugin = build_target(
 	install_dir: janus_plugin_install_dir,
 	c_args: shared_build_args,
 	link_args: shared_link_args,
-	target_type: 'shared_library',
+	target_type: 'shared_module',
+	export_dynamic: true,
 )
 
 janus_streaming_plugin_sources = [
@@ -320,7 +322,8 @@ janus_streaming_plugin = build_target(
 	install_dir: janus_plugin_install_dir,
 	c_args: [janus_streaming_plugin_build_args, shared_build_args],
 	link_args: shared_link_args,
-	target_type: 'shared_library'
+	target_type: 'shared_module',
+	export_dynamic: true,
 )
 
 janus_audiobridge_plugin_sources = [
@@ -352,7 +355,8 @@ janus_audiobridge_plugin = build_target(
 	install_dir: janus_plugin_install_dir,
 	c_args: [janus_audiobridge_plugin_build_args, shared_build_args],
 	link_args: shared_link_args,
-	target_type: 'shared_library'
+	target_type: 'shared_module',
+	export_dynamic: true,
 )
 
 janus_http_transport_sources = [
@@ -381,7 +385,8 @@ janus_http_transport = build_target(
 	install_dir: janus_transport_install_dir,
 	c_args: [janus_http_transport_build_args, shared_build_args],
 	link_args: shared_link_args,
-	target_type: 'shared_library'
+	target_type: 'shared_module',
+	export_dynamic: true,
 )
 
 janus_websockets_transport_sources = [
@@ -401,11 +406,13 @@ janus_websockets_transport = build_target(
 	'janus_websockets',
 	janus_websockets_transport_sources,
 	dependencies: [janus_dependencies, janus_websockets_transport_deps],
+	pic: true,
 	install: true,
 	install_dir: janus_transport_install_dir,
 	c_args: [janus_websockets_transport_build_args, shared_build_args],
 	link_args: shared_link_args,
-	target_type: 'shared_library'
+	target_type: 'shared_module',
+	export_dynamic: true,
 )
 
 janus_wsevh_event_deps = [
@@ -425,9 +432,11 @@ janus_wsevent_event = build_target(
 	'janus_wsevh',
 	janus_wsevh_event_sources,
 	dependencies: [janus_dependencies, janus_wsevh_event_deps],
+	pic: true,
 	install: true,
 	install_dir: janus_event_install_dir,
 	c_args: [janus_wsevh_event_build_args, shared_build_args],
 	link_args: shared_link_args,
-	target_type: 'shared_library'
+	target_type: 'shared_module',
+	export_dynamic: true,
 )
