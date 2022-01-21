@@ -31,7 +31,7 @@ extern "C" {
 
 #ifndef CMDLINE_PARSER_VERSION
 /** @brief the program version */
-#define CMDLINE_PARSER_VERSION "0.11.3"
+#define CMDLINE_PARSER_VERSION "0.11.16"
 #endif
 
 /** @brief Where the command line options are stored */
@@ -80,6 +80,8 @@ struct gengetopt_args_info
   int silence_distance_arg;	/**< @brief RTP packets distance used to detect RTP silence suppression, disabled if 0 (default=100).  */
   char * silence_distance_orig;	/**< @brief RTP packets distance used to detect RTP silence suppression, disabled if 0 (default=100) original value given at command line.  */
   const char *silence_distance_help; /**< @brief RTP packets distance used to detect RTP silence suppression, disabled if 0 (default=100) help description.  */
+  int dtx_flag;	/**< @brief Enable DTX mode (disables code to handle silence suppression) (default=off).  */
+  const char *dtx_help; /**< @brief Enable DTX mode (disables code to handle silence suppression) help description.  */
   int restamp_arg;	/**< @brief If the latency of a packet is bigger than the `moving_average_latency * (<restamp>/1000)` the timestamps will be corrected, disabled if 0 (default=0).  */
   char * restamp_orig;	/**< @brief If the latency of a packet is bigger than the `moving_average_latency * (<restamp>/1000)` the timestamps will be corrected, disabled if 0 (default=0) original value given at command line.  */
   const char *restamp_help; /**< @brief If the latency of a packet is bigger than the `moving_average_latency * (<restamp>/1000)` the timestamps will be corrected, disabled if 0 (default=0) help description.  */
@@ -108,6 +110,7 @@ struct gengetopt_args_info
   unsigned int faststart_given ;	/**< @brief Whether faststart was given.  */
   unsigned int audioskew_given ;	/**< @brief Whether audioskew was given.  */
   unsigned int silence_distance_given ;	/**< @brief Whether silence-distance was given.  */
+  unsigned int dtx_given ;	/**< @brief Whether dtx was given.  */
   unsigned int restamp_given ;	/**< @brief Whether restamp was given.  */
   unsigned int restamp_packets_given ;	/**< @brief Whether restamp-packets was given.  */
   unsigned int restamp_min_th_given ;	/**< @brief Whether restamp-min-th was given.  */
