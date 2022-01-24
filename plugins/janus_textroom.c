@@ -1440,11 +1440,17 @@ janus_plugin_result *janus_textroom_handle_incoming_request(janus_plugin_session
 	/* Parse JSON, if needed */
 	json_error_t error;
 	json_t *root = text ? json_loads(text, 0, &error) : json;
-	g_free(text);
+
+	// log data channel if there is an error
 	if(!root) {
 		JANUS_LOG(LOG_ERR, "Error parsing data channel message (JSON error: on line %d: %s)\n", error.line, error.text);
+		JANUS_LOG(LOG_ERR, "Got message: '%s'\n", text);
+		g_free(text);
 		return NULL;
 	}
+
+	g_free(text);
+
 	/* Handle request */
 	int error_code = 0;
 	char error_cause[512];
